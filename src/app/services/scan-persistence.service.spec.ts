@@ -1,6 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { ScanPersistenceService } from './scan-persistence.service';
 import { ScanRow } from '../models/scan.models';
+import PouchDB from 'pouchdb';
+import memory from 'pouchdb-adapter-memory';
+
+// Configure PouchDB to use memory adapter for tests
+PouchDB.plugin(memory);
+window.__POUCHDB_TEST_ADAPTER__ = 'memory';
 
 describe('ScanPersistenceService', () => {
   let service: ScanPersistenceService;
@@ -10,15 +16,29 @@ describe('ScanPersistenceService', () => {
     service = TestBed.inject(ScanPersistenceService);
   });
 
-  afterEach(async () => {
-    await service.deleteAllData();
-  });
-
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
+  describe('CSV Escaping', () => {
+    it('should escape commas in barcodes', () => {
+      const input = 'A,BC,D';
+      const escaped = (service as any).escapeCSV(input);
+      expect(escaped).toBe('"A,BC,D"');
+    });
+
+    it('should preserve special characters in userName', () => {
+      const input = 'Test "User"';
+      const escaped = (service as any).escapeCSV(input);
+      expect(escaped).toBe('"Test ""User"""');
+    });
+  });
+
   describe('Save and Retrieve Scans', () => {
+    beforeEach(async () => {
+      await service.deleteAllData();
+    });
+
     it('should save scans to database', async () => {
       const scans: ScanRow[] = [
         {
@@ -110,6 +130,10 @@ describe('ScanPersistenceService', () => {
   });
 
   describe('CSV Export', () => {
+    beforeEach(async () => {
+      await service.deleteAllData();
+    });
+
     it('should format CSV with correct column order', async () => {
       const scans: ScanRow[] = [{
         experimentId: 'exp-1',
@@ -131,6 +155,10 @@ describe('ScanPersistenceService', () => {
   });
 
   describe('Delete All Data', () => {
+    beforeEach(async () => {
+      await service.deleteAllData();
+    });
+
     it('should delete all scans', async () => {
       const scans: ScanRow[] = [{
         experimentId: 'exp-1',
@@ -148,20 +176,6 @@ describe('ScanPersistenceService', () => {
       await service.deleteAllData();
       const retrieved = await service.getAllScans();
       expect(retrieved.length).toBe(0);
-    });
-  });
-
-  describe('CSV Escaping', () => {
-    it('should escape commas in barcodes', () => {
-      const input = 'A,BC,D';
-      const escaped = (service as any).escapeCSV(input);
-      expect(escaped).toBe('"A,BC,D"');
-    });
-
-    it('should preserve special characters in userName', () => {
-      const input = 'Test "User"';
-      const escaped = (service as any).escapeCSV(input);
-      expect(escaped).toBe('"Test ""User"""');
     });
   });
 });

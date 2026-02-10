@@ -2,6 +2,13 @@ import { Injectable } from '@angular/core';
 import PouchDB from 'pouchdb';
 import { ScanRow } from '../models/scan.models';
 
+// Global variable to override adapter for testing
+declare global {
+  interface Window {
+    __POUCHDB_TEST_ADAPTER__?: string;
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,7 +16,13 @@ export class ScanPersistenceService {
   private db: PouchDB.Database;
 
   constructor() {
-    this.db = new PouchDB('scan-lab-observations');
+    this.db = this.createDatabase();
+  }
+
+  private createDatabase(): PouchDB.Database {
+    const adapter = window.__POUCHDB_TEST_ADAPTER__;
+    const options = adapter ? { adapter } : {};
+    return new PouchDB('scan-lab-observations', options);
   }
 
   async saveScans(scans: ScanRow[]): Promise<void> {
@@ -124,6 +137,6 @@ export class ScanPersistenceService {
 
   async deleteAllData(): Promise<void> {
     await this.db.destroy();
-    this.db = new PouchDB('scan-lab-observations');
+    this.db = this.createDatabase();
   }
 }
