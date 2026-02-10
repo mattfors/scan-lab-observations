@@ -5,11 +5,9 @@ import { ScanRow } from '../models/scan.models';
 describe('ScanPersistenceService', () => {
   let service: ScanPersistenceService;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(ScanPersistenceService);
-    // Clean up database before each test
-    await service.deleteAllData();
   });
 
   afterEach(async () => {
@@ -154,40 +152,16 @@ describe('ScanPersistenceService', () => {
   });
 
   describe('CSV Escaping', () => {
-    it('should escape commas in barcodes', async () => {
-      const scans: ScanRow[] = [{
-        experimentId: 'exp-1',
-        userName: 'TestUser',
-        targetScanStyle: 'compliant',
-        targetClusterSize: 5,
-        scanIndex: 0,
-        timestampMs: 1000,
-        deltaMs: null,
-        elapsedMs: 0,
-        barcode: 'BARCODE,WITH,COMMAS'
-      }];
-
-      await service.saveScans(scans);
-      const retrieved = await service.getAllScans();
-      expect(retrieved[0].barcode).toBe('BARCODE,WITH,COMMAS');
+    it('should escape commas in barcodes', () => {
+      const input = 'A,BC,D';
+      const escaped = (service as any).escapeCSV(input);
+      expect(escaped).toBe('"A,BC,D"');
     });
 
-    it('should preserve special characters in userName', async () => {
-      const scans: ScanRow[] = [{
-        experimentId: 'exp-1',
-        userName: 'Test "User"',
-        targetScanStyle: 'compliant',
-        targetClusterSize: 5,
-        scanIndex: 0,
-        timestampMs: 1000,
-        deltaMs: null,
-        elapsedMs: 0,
-        barcode: 'BARCODE1'
-      }];
-
-      await service.saveScans(scans);
-      const retrieved = await service.getAllScans();
-      expect(retrieved[0].userName).toBe('Test "User"');
+    it('should preserve special characters in userName', () => {
+      const input = 'Test "User"';
+      const escaped = (service as any).escapeCSV(input);
+      expect(escaped).toBe('"Test ""User"""');
     });
   });
 });
