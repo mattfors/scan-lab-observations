@@ -24,6 +24,7 @@ export class ExperimentControls {
     const scans = this.stateService.completeExperiment();
     if (scans.length > 0) {
       await this.persistenceService.saveScans(scans);
+      this.stateService.triggerStatisticsRefresh();
       alert(`Experiment completed. ${scans.length} scans saved.`);
     } else {
       alert('Experiment completed. No scans recorded.');
@@ -38,6 +39,7 @@ export class ExperimentControls {
     const confirmed = confirm('This will permanently delete all local data. Are you sure?');
     if (confirmed) {
       await this.persistenceService.deleteAllData();
+      this.stateService.triggerStatisticsRefresh();
       alert('All data deleted.');
     }
   }

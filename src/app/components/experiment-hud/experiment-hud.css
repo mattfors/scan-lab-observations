@@ -9,14 +9,17 @@
 }
 
 .status,
-.scan-count {
+.scan-count,
+.total-scans,
+.total-experiments {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
 }
 
 .status-label,
-.count-label {
+.count-label,
+.stats-label {
   font-size: var(--font-size-small);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -34,4 +37,16 @@
   font-weight: bold;
   color: var(--color-accent-green);
   letter-spacing: -0.05em;
+}
+
+.stats-divider {
+  height: var(--border-width);
+  background-color: var(--color-border-secondary);
+  margin: var(--spacing-xs) 0;
+}
+
+.stats-value {
+  font-size: var(--font-size-large);
+  font-weight: bold;
+  color: var(--color-text-primary);
 }

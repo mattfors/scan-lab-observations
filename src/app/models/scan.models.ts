@@ -5,7 +5,7 @@ export interface ScanRow {
   experimentId: string;
   userName: string;
   targetScanStyle: TargetScanStyle;
-  targetClusterSize: number;
+  targetClusterSize: number | null;
   scanIndex: number;
   timestampMs: number;
   deltaMs: number | null;

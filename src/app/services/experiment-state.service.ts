@@ -12,6 +12,7 @@ export class ExperimentStateService {
   private readonly userNameSignal = signal<string>('');
   private readonly targetScanStyleSignal = signal<TargetScanStyle | ''>('');
   private readonly targetClusterSizeSignal = signal<number | null>(null);
+  private readonly statisticsRefreshSignal = signal<number>(0);
   
   private currentExperimentId: string = '';
   private firstScanTimestamp: number = 0;
@@ -23,6 +24,7 @@ export class ExperimentStateService {
   readonly userName = this.userNameSignal.asReadonly();
   readonly targetScanStyle = this.targetScanStyleSignal.asReadonly();
   readonly targetClusterSize = this.targetClusterSizeSignal.asReadonly();
+  readonly statisticsRefresh = this.statisticsRefreshSignal.asReadonly();
 
   // Computed signals
   readonly scanCount = computed(() => this.scansSignal().length);
@@ -32,10 +34,22 @@ export class ExperimentStateService {
     const style = this.targetScanStyleSignal();
     const size = this.targetClusterSizeSignal();
     
-    return userName.trim() !== '' && 
-           style !== '' && 
-           size !== null && 
-           size > 1;
+    // Username and style are always required
+    if (userName.trim() === '' || style === '') {
+      return false;
+    }
+    
+    // For compliant scanning, cluster size must be >= 1
+    if (style === 'compliant') {
+      return size !== null && size >= 1;
+    }
+    
+    // For non-compliant scanning, cluster size is optional
+    if (style === 'non_compliant') {
+      return true;
+    }
+    
+    return false;
   });
 
   constructor() {
@@ -98,7 +112,7 @@ export class ExperimentStateService {
       experimentId: this.currentExperimentId,
       userName: this.userNameSignal(),
       targetScanStyle: this.targetScanStyleSignal() as TargetScanStyle,
-      targetClusterSize: this.targetClusterSizeSignal()!,
+      targetClusterSize: this.targetClusterSizeSignal(),
       scanIndex,
       timestampMs,
       deltaMs,
@@ -129,5 +143,9 @@ export class ExperimentStateService {
     this.targetScanStyleSignal.set('');
     this.targetClusterSizeSignal.set(null);
     localStorage.removeItem('scan-lab-userName');
+  }
+
+  triggerStatisticsRefresh(): void {
+    this.statisticsRefreshSignal.update(v => v + 1);
   }
 }

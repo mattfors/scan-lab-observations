@@ -32,6 +32,17 @@ export class ScanPersistenceService {
       .map((row: any) => row.doc as ScanRow);
   }
 
+  async getTotalScanCount(): Promise<number> {
+    const result = await this.db.allDocs();
+    return result.total_rows;
+  }
+
+  async getTotalExperimentCount(): Promise<number> {
+    const scans = await this.getAllScans();
+    const uniqueExperimentIds = new Set(scans.map(scan => scan.experimentId));
+    return uniqueExperimentIds.size;
+  }
+
   async exportToCSV(): Promise<void> {
     const scans = await this.getAllScans();
     
@@ -71,7 +82,7 @@ export class ScanPersistenceService {
         scan.experimentId,
         this.escapeCSV(scan.userName),
         scan.targetScanStyle,
-        scan.targetClusterSize.toString(),
+        scan.targetClusterSize !== null ? scan.targetClusterSize.toString() : '',
         scan.scanIndex.toString(),
         scan.timestampMs.toString(),
         scan.deltaMs !== null ? scan.deltaMs.toString() : '',

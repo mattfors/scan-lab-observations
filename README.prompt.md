@@ -73,25 +73,51 @@ Use **CSS custom properties (variables)** for all colors, fonts, and common spac
 1. User completes experiment entry form:
    - `userName` (last value persisted for convenience)
    - `targetScanStyle` (REQUIRED explicit choice): `compliant` or `non_compliant`
-   - `targetClusterSize` (REQUIRED integer > 1)
+   - `targetClusterSize`:
+     - For `compliant`: REQUIRED integer >= 1
+     - For `non_compliant`: OPTIONAL (can be null)
+   - `muteAudio` (checkbox to disable text-to-speech announcements)
 
 2. **Start** button is disabled until:
    - `targetScanStyle` explicitly selected (no default)
-   - `targetClusterSize` valid integer > 1
+   - For `compliant`: `targetClusterSize` valid integer >= 1
+   - For `non_compliant`: `targetClusterSize` is optional
    - `userName` non-empty
 
 3. User clicks **Start** → application enters RUNNING state.
 
 4. User performs scans.
+   - Each scan triggers audio announcement of current scan count (unless muted)
+   - Text-to-speech automatically cancels previous utterances to prevent stacking during rapid scanning
 
 5. User clicks **Complete**:
    - experiment scans persisted to local PouchDB
-   - form resets EXCEPT `userName`
+   - form resets EXCEPT `userName` and `muteAudio`
    - application returns to CONFIG state
 
 In-progress experiments are never persisted.
 
 Reloading or closing the browser discards in-progress runs.
+
+---
+
+## Text-to-Speech Feature
+
+Implement a **TextToSpeechService** that:
+
+- Announces the current scan count after each scan during RUNNING state
+- Uses browser's native `SpeechSynthesis` API
+- Automatically cancels previous speech utterances to prevent stacking when scanning rapidly
+- Provides a mute toggle that persists across sessions in localStorage
+- Speech is only active during RUNNING mode
+- Mute checkbox available in configuration form
+- Speech properties: rate=1.2, pitch=1.0, volume=1.0 for quick, clear announcements
+
+Key implementation requirements:
+- Watch scan count changes using Angular effects
+- Call `speechSynthesis.cancel()` before each new utterance
+- Store mute preference in localStorage as `scan-lab-tts-muted`
+- Only announce when mode === 'RUNNING' and not muted
 
 ---
 
@@ -177,7 +203,7 @@ Each stored scan includes:
 - experimentId (UUID v4)
 - userName
 - targetScanStyle
-- targetClusterSize
+- targetClusterSize (number or null for non-compliant scans)
 - scanIndex (starting at 0)
 - timestampMs
 - deltaMs
@@ -198,6 +224,11 @@ CONFIG state shows:
 
 - experiment entry form
 - Start button
+- Status HUD displaying:
+  - Current state (CONFIG/RUNNING)
+  - Current scan count (in-memory)
+  - Total scans stored in database
+  - Total unique experiments in database
 
 RUNNING state shows:
 
@@ -209,7 +240,8 @@ On Complete:
 
 - brief confirmation
 - reset style and cluster fields
-- preserve username
+- preserve username and mute audio setting
+- statistics refresh automatically
 
 Recent scan table columns:
 
