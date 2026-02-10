@@ -11,6 +11,9 @@
 npm-debug.log
 yarn-error.log
 
+# PouchDB local databases
+/scan-lab-observations
+
 # IDEs and editors
 .idea/
 .project
