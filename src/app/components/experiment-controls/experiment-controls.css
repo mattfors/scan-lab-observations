@@ -1,0 +1,55 @@
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 150px;
+}
+
+.controls button {
+  padding: 0.75rem 1.5rem;
+  background-color: #1a1a1a;
+  border: 1px solid #555;
+  color: #e0e0e0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+}
+
+.controls button:hover:not(:disabled) {
+  background-color: #333;
+  border-color: #0a84ff;
+}
+
+.controls button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.btn-start {
+  border-color: #0a84ff !important;
+}
+
+.btn-start:hover:not(:disabled) {
+  background-color: #0a84ff !important;
+  color: #000;
+}
+
+.btn-complete {
+  border-color: #00ff00 !important;
+}
+
+.btn-complete:hover:not(:disabled) {
+  background-color: #00ff00 !important;
+  color: #000;
+}
+
+.btn-delete {
+  border-color: #ff0000 !important;
+}
+
+.btn-delete:hover:not(:disabled) {
+  background-color: #ff0000 !important;
+}

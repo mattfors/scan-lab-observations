@@ -1,0 +1,28 @@
+<div class="scan-grid">
+  @if (scansReversed().length === 0) {
+    <div class="empty-state">No scans recorded</div>
+  } @else {
+    <table>
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Timestamp (ms)</th>
+          <th>Delta (ms)</th>
+          <th>Elapsed (ms)</th>
+          <th>Barcode</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (scan of scansReversed(); track scan.scanIndex) {
+          <tr>
+            <td>{{ scan.scanIndex }}</td>
+            <td>{{ scan.timestampMs }}</td>
+            <td>{{ scan.deltaMs !== null ? scan.deltaMs : '' }}</td>
+            <td>{{ scan.elapsedMs }}</td>
+            <td>{{ scan.barcode }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
