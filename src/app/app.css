@@ -2,20 +2,20 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #2a2a2a;
-  color: #e0e0e0;
-  font-family: 'Courier New', monospace;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-mono);
 }
 
 .app-header {
-  background-color: #1a1a1a;
-  padding: 1rem 2rem;
-  border-bottom: 2px solid #444;
+  background-color: var(--color-bg-secondary);
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  border-bottom: var(--border-width-thick) solid var(--color-border-primary);
 }
 
 .app-header h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: var(--font-size-xlarge);
   font-weight: normal;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -23,15 +23,15 @@
 
 .control-strip {
   display: flex;
-  gap: 2rem;
-  padding: 1.5rem 2rem;
-  background-color: #333;
-  border-bottom: 2px solid #444;
+  gap: var(--spacing-2xl);
+  padding: var(--spacing-xl) var(--spacing-2xl);
+  background-color: var(--color-bg-tertiary);
+  border-bottom: var(--border-width-thick) solid var(--color-border-primary);
   align-items: flex-start;
 }
 
 .scan-section {
   flex: 1;
   overflow: auto;
-  padding: 1rem 2rem;
+  padding: var(--spacing-lg) var(--spacing-2xl);
 }

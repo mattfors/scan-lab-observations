@@ -20,6 +20,20 @@ The application must feel like a **laboratory or industrial instrument**, not a 
 
 ---
 
+## Development Environment
+
+Provide a **devcontainer configuration** (`.devcontainer/devcontainer.json`) for consistent development environment setup with:
+
+- Node.js 20+
+- Angular CLI and TypeScript extensions
+- Automatic port forwarding for development server (port 4200)
+- Pre-configured formatting and linting tools
+- Automatic `npm install` on container creation
+
+This ensures all developers have the same tooling and environment.
+
+---
+
 ## Technology Requirements
 
 - Framework: Angular (latest stable)
@@ -39,6 +53,18 @@ Use standard Angular patterns:
 - Strong typing throughout
 
 Prefer minimal dependencies.
+
+---
+
+## Styling Requirements
+
+Use **CSS custom properties (variables)** for all colors, fonts, and common spacing values:
+
+- Define all theme colors in `:root` (backgrounds, text colors, borders, accents)
+- Define typography variables (font families, sizes)
+- Define spacing scale for consistent padding/margins
+- All component CSS files should reference these variables
+- This allows easy theme customization and maintains consistency
 
 ---
 

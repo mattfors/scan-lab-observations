@@ -4,6 +4,14 @@ Experimental Scan Timing Capture Tool - An offline-friendly Angular web applicat
 
 ![Initial View](https://github.com/user-attachments/assets/2975b0d7-748d-4363-9a3d-1ab0a7fd2e09)
 
+## Application in Action
+
+The application features a dark, instrument-panel style interface designed for laboratory use. The screenshot below shows the application during an active experiment with three scans captured:
+
+![Application in Use](https://github.com/user-attachments/assets/d370ba69-592b-4a5b-8281-82bf7ccec0d2)
+
+*The application captures scan timing data in real-time, displaying scan index, timestamps, delta times, elapsed times, and barcode values in a clean, monospace table format.*
+
 ## Purpose
 
 This application is a research tool designed to:

@@ -5,9 +5,9 @@
 
 .empty-state {
   text-align: center;
-  padding: 2rem;
-  color: #666;
-  font-size: 1rem;
+  padding: var(--spacing-2xl);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -15,50 +15,50 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #1a1a1a;
-  font-size: 0.85rem;
+  background-color: var(--color-bg-secondary);
+  font-size: var(--font-size-medium);
 }
 
 thead {
-  background-color: #000;
+  background-color: var(--color-bg-panel);
   position: sticky;
   top: 0;
 }
 
 th {
-  padding: 0.75rem;
+  padding: var(--spacing-md);
   text-align: left;
   font-weight: normal;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  font-size: 0.7rem;
-  color: #999;
-  border-bottom: 2px solid #444;
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  border-bottom: var(--border-width-thick) solid var(--color-border-primary);
 }
 
 td {
-  padding: 0.5rem 0.75rem;
-  border-bottom: 1px solid #333;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: var(--border-width) solid var(--color-border-subtle);
 }
 
 tbody tr:hover {
-  background-color: #222;
+  background-color: var(--color-bg-hover);
 }
 
 td:nth-child(1) {
-  color: #0a84ff;
+  color: var(--color-accent-blue);
   font-weight: bold;
 }
 
 td:nth-child(2),
 td:nth-child(3),
 td:nth-child(4) {
-  font-family: 'Courier New', monospace;
-  color: #00ff00;
+  font-family: var(--font-family-mono);
+  color: var(--color-accent-green);
 }
 
 td:nth-child(5) {
-  font-family: 'Courier New', monospace;
-  color: #ffaa00;
+  font-family: var(--font-family-mono);
+  color: var(--color-accent-orange);
   word-break: break-all;
 }

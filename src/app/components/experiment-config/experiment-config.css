@@ -1,41 +1,41 @@
 .config-form {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--spacing-md);
   min-width: 300px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: var(--spacing-xs);
 }
 
 .form-group label {
-  font-size: 0.75rem;
+  font-size: var(--font-size-xsmall);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #999;
+  color: var(--color-text-secondary);
 }
 
 .form-group input,
 .form-group select {
-  padding: 0.5rem;
-  background-color: #1a1a1a;
-  border: 1px solid #555;
-  color: #e0e0e0;
-  font-family: 'Courier New', monospace;
-  font-size: 0.9rem;
+  padding: var(--spacing-sm);
+  background-color: var(--color-bg-secondary);
+  border: var(--border-width) solid var(--color-border-secondary);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-base);
 }
 
 .form-group input:disabled,
 .form-group select:disabled {
-  opacity: 0.5;
+  opacity: var(--opacity-dimmed);
   cursor: not-allowed;
 }
 
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #0a84ff;
+  border-color: var(--color-accent-blue);
 }
