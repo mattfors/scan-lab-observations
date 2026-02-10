@@ -11,10 +11,14 @@ export class TextToSpeechService {
   readonly muted = this.mutedSignal.asReadonly();
 
   constructor(private stateService: ExperimentStateService) {
-    // Load muted state from localStorage
+    // Load muted state from localStorage, default to true (muted)
     const savedMuted = localStorage.getItem('scan-lab-tts-muted');
     if (savedMuted !== null) {
       this.mutedSignal.set(savedMuted === 'true');
+    } else {
+      // Default to muted if no preference is saved
+      this.mutedSignal.set(true);
+      localStorage.setItem('scan-lab-tts-muted', 'true');
     }
 
     // Watch for scan count changes and announce them
