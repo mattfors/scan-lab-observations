@@ -20,7 +20,7 @@ export class ScanPersistenceService {
   }
 
   private createDatabase(): PouchDB.Database {
-    const adapter = typeof window !== 'undefined' ? window.__POUCHDB_TEST_ADAPTER__ : undefined;
+    const adapter = window.__POUCHDB_TEST_ADAPTER__;
     const options = adapter ? { adapter } : {};
     return new PouchDB('scan-lab-observations', options);
   }

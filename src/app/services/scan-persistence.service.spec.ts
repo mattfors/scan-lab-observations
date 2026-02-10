@@ -39,10 +39,6 @@ describe('ScanPersistenceService', () => {
       await service.deleteAllData();
     });
 
-    afterEach(async () => {
-      await service.deleteAllData();
-    });
-
     it('should save scans to database', async () => {
       const scans: ScanRow[] = [
         {
@@ -138,10 +134,6 @@ describe('ScanPersistenceService', () => {
       await service.deleteAllData();
     });
 
-    afterEach(async () => {
-      await service.deleteAllData();
-    });
-
     it('should format CSV with correct column order', async () => {
       const scans: ScanRow[] = [{
         experimentId: 'exp-1',
@@ -164,10 +156,6 @@ describe('ScanPersistenceService', () => {
 
   describe('Delete All Data', () => {
     beforeEach(async () => {
-      await service.deleteAllData();
-    });
-
-    afterEach(async () => {
       await service.deleteAllData();
     });
 
