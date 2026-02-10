@@ -88,7 +88,9 @@ npm test
 
 1. Enter your **User Name**
 2. Select **Target Scan Style** (Compliant or Non-Compliant)
-3. Enter **Target Cluster Size** (must be > 1)
+3. Enter **Target Cluster Size**:
+   - For **Compliant**: required integer ≥ 1
+   - For **Non-Compliant**: optional
 4. Click **Start** button
 
 ### Recording Scans
