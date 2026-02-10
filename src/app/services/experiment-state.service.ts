@@ -39,9 +39,9 @@ export class ExperimentStateService {
       return false;
     }
     
-    // For compliant scanning, cluster size must be >= 1
+    // For compliant scanning, cluster size must be >= 2
     if (style === 'compliant') {
-      return size !== null && size >= 1;
+      return size !== null && size >= 2;
     }
     
     // For non-compliant scanning, cluster size is optional
