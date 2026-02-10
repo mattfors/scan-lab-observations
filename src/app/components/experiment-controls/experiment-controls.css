@@ -1,0 +1,55 @@
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  min-width: 150px;
+}
+
+.controls button {
+  padding: var(--spacing-md) var(--spacing-xl);
+  background-color: var(--color-bg-secondary);
+  border: var(--border-width) solid var(--color-border-secondary);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all var(--transition-speed);
+}
+
+.controls button:hover:not(:disabled) {
+  background-color: var(--color-bg-tertiary);
+  border-color: var(--color-accent-blue);
+}
+
+.controls button:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+.btn-start {
+  border-color: var(--color-accent-blue) !important;
+}
+
+.btn-start:hover:not(:disabled) {
+  background-color: var(--color-accent-blue) !important;
+  color: var(--color-accent-black);
+}
+
+.btn-complete {
+  border-color: var(--color-accent-green) !important;
+}
+
+.btn-complete:hover:not(:disabled) {
+  background-color: var(--color-accent-green) !important;
+  color: var(--color-accent-black);
+}
+
+.btn-delete {
+  border-color: var(--color-accent-red) !important;
+}
+
+.btn-delete:hover:not(:disabled) {
+  background-color: var(--color-accent-red) !important;
+}

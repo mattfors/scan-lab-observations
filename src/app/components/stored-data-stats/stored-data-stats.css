@@ -1,0 +1,45 @@
+.stored-data-panel {
+  background-color: var(--color-bg-secondary);
+  border: var(--border-width) solid var(--color-border-secondary);
+  padding: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+.panel-title {
+  font-size: var(--font-size-small);
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-xs) 0;
+  padding-bottom: var(--spacing-xs);
+  border-bottom: var(--border-width) solid var(--color-border-secondary);
+}
+
+.stats-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.stat-label {
+  font-size: var(--font-size-small);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.stat-value {
+  font-size: var(--font-size-base);
+  font-weight: bold;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-mono);
+}

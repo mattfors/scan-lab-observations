@@ -1,0 +1,54 @@
+<div class="config-form">
+  <div class="form-group">
+    <label for="userName">User Name:</label>
+    <input 
+      id="userName"
+      type="text" 
+      [value]="userName()"
+      (input)="onUserNameChange($any($event.target).value)"
+      [disabled]="mode() === 'RUNNING'"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="targetScanStyle">Target Scan Style:</label>
+    <select 
+      id="targetScanStyle"
+      [value]="targetScanStyle()"
+      (change)="onTargetScanStyleChange($any($event.target).value)"
+      [disabled]="mode() === 'RUNNING'"
+    >
+      <option value="">-- Select --</option>
+      <option value="compliant">Compliant</option>
+      <option value="non_compliant">Non-Compliant</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="targetClusterSize">
+      Target Cluster Size:
+      @if (targetScanStyle() === 'non_compliant') {
+        <span class="optional-label">(optional)</span>
+      }
+    </label>
+    <input 
+      id="targetClusterSize"
+      type="number" 
+      [value]="targetClusterSize() ?? ''"
+      (input)="onTargetClusterSizeChange($any($event.target).value)"
+      [disabled]="mode() === 'RUNNING'"
+      min="1"
+    />
+  </div>
+
+  <div class="form-group checkbox-group">
+    <label>
+      <input 
+        type="checkbox"
+        [checked]="ttsMuted()"
+        (change)="onTtsMuteChange($any($event.target).checked)"
+      />
+      <span class="checkbox-label">Mute Scan Count Audio</span>
+    </label>
+  </div>
+</div>

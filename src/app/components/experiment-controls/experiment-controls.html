@@ -1,0 +1,36 @@
+<div class="controls">
+  @if (mode() === 'CONFIG') {
+    <button 
+      class="btn-start"
+      [disabled]="!canStart()"
+      (click)="onStart()"
+    >
+      Start
+    </button>
+  } @else {
+    <button 
+      class="btn-complete"
+      (click)="onComplete()"
+    >
+      Complete
+    </button>
+  }
+
+  <button 
+    class="btn-export"
+    (click)="onExport()"
+    [disabled]="mode() === 'RUNNING'"
+  >
+    Export All CSV
+  </button>
+
+  <button 
+    class="btn-delete"
+    (click)="onDeleteAll()"
+    [disabled]="mode() === 'RUNNING'"
+  >
+    Delete All Data
+  </button>
+
+  <app-stored-data-stats></app-stored-data-stats>
+</div>

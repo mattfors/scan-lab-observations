@@ -1,0 +1,69 @@
+/* CSS Custom Properties for Theme Variables */
+:root {
+  /* Color Palette */
+  --color-bg-primary: #2a2a2a;
+  --color-bg-secondary: #1a1a1a;
+  --color-bg-tertiary: #333;
+  --color-bg-panel: #000;
+  --color-bg-hover: #222;
+  
+  --color-text-primary: #e0e0e0;
+  --color-text-secondary: #999;
+  --color-text-muted: #666;
+  
+  --color-border-primary: #444;
+  --color-border-secondary: #555;
+  --color-border-subtle: #333;
+  
+  --color-accent-blue: #0a84ff;
+  --color-accent-green: #00ff00;
+  --color-accent-red: #ff0000;
+  --color-accent-orange: #ffaa00;
+  --color-accent-black: #000;
+  
+  /* Typography */
+  --font-family-mono: 'Courier New', monospace;
+  --font-size-base: 0.9rem;
+  --font-size-small: 0.7rem;
+  --font-size-xsmall: 0.75rem;
+  --font-size-medium: 0.85rem;
+  --font-size-large: 1.2rem;
+  --font-size-xlarge: 1.5rem;
+  --font-size-huge: 2.5rem;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 0.75rem;
+  --spacing-lg: 1rem;
+  --spacing-xl: 1.5rem;
+  --spacing-2xl: 2rem;
+  
+  /* Layout */
+  --border-width: 1px;
+  --border-width-thick: 2px;
+  
+  /* Effects */
+  --opacity-disabled: 0.3;
+  --opacity-dimmed: 0.5;
+  --transition-speed: 0.2s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-mono);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  overflow: hidden;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
