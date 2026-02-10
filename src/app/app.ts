@@ -4,11 +4,10 @@ import { ExperimentControls } from './components/experiment-controls/experiment-
 import { ExperimentHud } from './components/experiment-hud/experiment-hud';
 import { ScanGrid } from './components/scan-grid/scan-grid';
 import { ScanCapture } from './components/scan-capture/scan-capture';
-import { StoredDataStats } from './components/stored-data-stats/stored-data-stats';
 
 @Component({
   selector: 'app-root',
-  imports: [ExperimentConfig, ExperimentControls, ExperimentHud, ScanGrid, ScanCapture, StoredDataStats],
+  imports: [ExperimentConfig, ExperimentControls, ExperimentHud, ScanGrid, ScanCapture],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

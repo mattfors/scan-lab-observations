@@ -1,31 +1,32 @@
 .stored-data-panel {
   background-color: var(--color-bg-secondary);
-  border: var(--border-width-thick) solid var(--color-border-secondary);
-  padding: var(--spacing-lg) var(--spacing-2xl);
-  margin: var(--spacing-lg) var(--spacing-2xl);
+  border: var(--border-width) solid var(--color-border-secondary);
+  padding: var(--spacing-sm);
+  margin-top: var(--spacing-md);
 }
 
 .panel-title {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-small);
   font-weight: normal;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   color: var(--color-text-secondary);
-  margin: 0 0 var(--spacing-lg) 0;
+  margin: 0 0 var(--spacing-xs) 0;
+  padding-bottom: var(--spacing-xs);
   border-bottom: var(--border-width) solid var(--color-border-secondary);
-  padding-bottom: var(--spacing-sm);
 }
 
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
 }
 
 .stat-item {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
 }
 
 .stat-label {
@@ -33,10 +34,11 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--color-text-secondary);
+  white-space: nowrap;
 }
 
 .stat-value {
-  font-size: var(--font-size-xlarge);
+  font-size: var(--font-size-base);
   font-weight: bold;
   color: var(--color-text-primary);
   font-family: var(--font-family-mono);

@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ExperimentStateService } from '../../services/experiment-state.service';
 import { ScanPersistenceService } from '../../services/scan-persistence.service';
+import { StoredDataStats } from '../stored-data-stats/stored-data-stats';
 
 @Component({
   selector: 'app-experiment-controls',
-  imports: [CommonModule],
+  imports: [CommonModule, StoredDataStats],
   templateUrl: './experiment-controls.html',
   styleUrl: './experiment-controls.css',
 })
