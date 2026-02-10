@@ -56,6 +56,13 @@ describe('ExperimentStateService', () => {
       expect(service.canStart()).toBe(true);
     });
 
+    it('should allow start when targetClusterSize is 1', () => {
+      service.updateUserName('TestUser');
+      service.updateTargetScanStyle('compliant');
+      service.updateTargetClusterSize(1);
+      expect(service.canStart()).toBe(true);
+    });
+
     it('should allow start when all fields are valid', () => {
       service.updateUserName('TestUser');
       service.updateTargetScanStyle('compliant');
