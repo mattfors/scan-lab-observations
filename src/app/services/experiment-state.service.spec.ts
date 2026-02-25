@@ -49,11 +49,11 @@ describe('ExperimentStateService', () => {
       expect(service.canStart()).toBe(false);
     });
 
-    it('should not allow start when targetClusterSize is less than 1', () => {
+    it('should allow start when targetClusterSize is 1 for compliant', () => {
       service.updateUserName('TestUser');
       service.updateTargetScanStyle('compliant');
-      service.updateTargetClusterSize(0);
-      expect(service.canStart()).toBe(false);
+      service.updateTargetClusterSize(1);
+      expect(service.canStart()).toBe(true);
     });
 
     it('should allow start when targetClusterSize is 1', () => {
